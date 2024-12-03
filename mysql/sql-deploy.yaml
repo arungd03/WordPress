@@ -22,17 +22,20 @@ spec:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mysql-pass
-              key: password
+              name: mydb-key
+              key: pass
         - name: MYSQL_DATABASE
           value: wordpress
         - name: MYSQL_USER
-          value: wordpress
+           valueFrom:
+            secretKeyRef:
+              name: mydb-key
+              key: user
         - name: MYSQL_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mysql-key
-              key: password
+              name: mydb-key
+              key: pass
         ports:
         - containerPort: 3306
           name: mysql
@@ -42,4 +45,4 @@ spec:
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
-          claimName: mysql-pv-claim
+          claimName: mysql-pvc
