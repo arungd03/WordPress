@@ -27,7 +27,7 @@ spec:
         - name: MYSQL_DATABASE
           value: wordpress
         - name: MYSQL_USER
-           valueFrom:
+          valueFrom:
             secretKeyRef:
               name: mydb-key
               key: user
